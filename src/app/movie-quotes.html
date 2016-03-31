@@ -1,20 +1,36 @@
-<p>
-  movie-quotes Works!
-</p>
-
-<div>
-Quote: <input type="text" [(ngModel)]="moviequote.quote">
+<add-dialog #addDialog (quoteAdded)="addQuote($event)"></add-dialog>
+<edit-dialog #editDialog></edit-dialog>
+<nav>
+  <div class="nav-wrapper indigo">
+    <a href="#" class="brand-logo">Movie Quotes</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a (click)="show(addDialog)">Add Quote</a></li>
+      <li><a (click)="editable = !editable">Edit Quotes</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <table class="highlight">
+    <thead>
+      <tr>
+        <th>Quote</th>
+        <th>Movie</th>
+        <th [class.hide]="!editable"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="#mq of moviequotes | async">
+        <td>
+          {{mq.quote}}
+        </td>
+        <td>
+          {{mq.movie}}
+        </td>
+        <td [class.hide]="!editable">
+          <a class="blue btn" (click)="editQuote(editDialog, mq)"><i class="material-icons">mode_edit</i></a>
+          <a class="red btn" (click)="removeQuote(mq.$key)"><i class="material-icons">delete</i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<div>
-Movie: <input type="text" [(ngModel)]="moviequote.movie">
-</div>
-<div>
-  <button (click)="addQuote()">Add</button>
-</div>
-<ul *ngFor="#mq of moviequotes | async">
-  <li class="text">
-    {{mq.quote}} - {{mq.movie}}
-  </li>
-</ul>
-
-<router-outlet></router-outlet>

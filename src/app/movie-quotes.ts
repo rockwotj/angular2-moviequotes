@@ -2,12 +2,16 @@ import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 import {CliRouteConfig} from './route-config';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import {AddDialog} from './add-dialog/add-dialog';
+import {EditDialog} from './edit-dialog/edit-dialog';
+import {Moviequote} from './moviequote';
 
 @Component({
   selector: 'movie-quotes-app',
   providers: [ROUTER_PROVIDERS],
   templateUrl: 'app/movie-quotes.html',
-  directives: [ROUTER_DIRECTIVES],
+  styleUrls: ['app/movie-quotes.css'],
+  directives: [ROUTER_DIRECTIVES, AddDialog, EditDialog],
   pipes: []
 })
 @RouteConfig([
@@ -15,23 +19,32 @@ import {AngularFire, FirebaseListObservable} from 'angularfire2';
 ].concat(CliRouteConfig))
 
 export class MovieQuotesApp {
-  defaultMeaning: number = 42;
   moviequote: Moviequote = new Moviequote();
   moviequotes: FirebaseListObservable<any[]>;
+  editable: boolean = false;
 
   constructor(af: AngularFire) { this.moviequotes = af.list('/quotes'); }
 
-  addQuote() {
-    this.moviequotes.add(this.moviequote);
+  addQuote(mq: Moviequote) {
+    console.log(mq);
+    this.moviequotes.add(mq);
     this.moviequote = new Moviequote();
   }
 
-  meaningOfLife(meaning?: number) {
-    return `The meaning of life is ${meaning || this.defaultMeaning}`;
+  removeQuote(key: string) {
+    this.moviequotes.remove(key);  
+    this.editable = false;
   }
-}
 
-class Moviequote {
-  public movie: String;
-  public quote: String;
+  editQuote(dialog: EditDialog, mq: Moviequote) {
+    // I want the following
+    // this.moviequotes.save(key);
+    dialog.open(mq); 
+    this.editable = false;
+  }
+
+  show(dialog: AddDialog) {
+    dialog.open();
+  }
+
 }

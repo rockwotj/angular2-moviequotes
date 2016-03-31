@@ -1,0 +1,26 @@
+<div class="modal" [style.display]="_show ? 'block' : 'none'">
+  <div class="modal-content">
+    <h4>Add Movie Quote</h4>
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">format_quote</i>
+            <input type="text" class="validate" [(ngModel)]="mq.quote">
+            <label class="active">Quote</label>
+          </div>
+          <div class="input-field col s12">
+            <i class="material-icons prefix">movie</i>
+            <input type="text" class="validate" [(ngModel)]="mq.movie">
+            <label class="active">Movie</label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#" (click)="createQuote()" class="btn-flat">Add</a>
+    <a href="#" (click)="close()" class="btn-flat">Cancel</a>
+  </div>
+</div>
+<div class="lean-overlay" (click)="close()" [style.display]="_show ? 'block': 'none'"></div>
