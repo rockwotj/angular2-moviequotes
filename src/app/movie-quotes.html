@@ -2,4 +2,10 @@
   movie-quotes Works!
 </p>
 
+<ul *ngFor="#mq of moviequotes | async">
+  <li class="text">
+    {{mq.quote}}
+  </li>
+</ul>
+
 <router-outlet></router-outlet>
