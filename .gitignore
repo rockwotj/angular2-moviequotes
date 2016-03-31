@@ -2,6 +2,7 @@
 
 # firebase 
 firebase-debug.log
+*.appcache
 
 # compiled output
 /dist
