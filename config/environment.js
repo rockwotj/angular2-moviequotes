@@ -3,7 +3,7 @@
 module.exports = function(environment) {
   return {
     environment: environment,
-    baseURL: '/ng-moviequotes/',
+    baseURL: '/',
     locationType: 'auto'
   };
 };

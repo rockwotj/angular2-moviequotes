@@ -1,58 +1,73 @@
 <!doctype html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>MovieQuotes</title>
-  <base href="/ng-moviequotes/">
-  {{content-for 'head'}}
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link type="text/css" rel="stylesheet" href="vendor/materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>        
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  
-  <!-- Service worker support is disabled by default.
-       Install the worker script and uncomment to enable.
-       Only enable service workers in production.
-  <script type="text/javascript">
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/worker.js').catch(function(err) {
-        console.log('Error installing service worker: ', err);
-      });
-    }
-  </script>
-  -->
-</head>
-<body>
-  <movie-quotes-app>Loading...</movie-quotes-app>
+  <head>
+    <meta charset="utf-8">
+    <title>MovieQuotes</title>
+    <base href="/">
+    {{content-for 'head'}}
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="vendor/materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>        
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <script src="vendor/es6-shim/es6-shim.js"></script>
-  <script src="vendor/systemjs/dist/system-polyfills.js"></script>
-  <script src="vendor/angular2/bundles/angular2-polyfills.js"></script>
-  <script src="vendor/systemjs/dist/system.src.js"></script>
-  <script src="vendor/rxjs/bundles/Rx.js"></script>
-
-  <script src="vendor/angular2/bundles/angular2.dev.js"></script>
-  <script src="vendor/angular2/bundles/http.dev.js"></script>
-  <script src="vendor/angular2/bundles/router.dev.js"></script>
-
-  <script>
-    System.config({
-      map: {
-        firebase: 'vendor/firebase/lib/firebase-web.js',
-        angularfire2: 'vendor/angularfire2'
-      },
-      packages: {
-        app: {
-          format: 'register',
-          defaultExtension: 'js'
-        },
-        angularfire2: {
-          defaultExtension: 'js',
-          main: 'angularfire2.js'
-        }
+    <!-- Service worker support is disabled by default.
+    Install the worker script and uncomment to enable.
+    Only enable service workers in production.
+    <script type="text/javascript">
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/worker.js').catch(function(err) {
+            console.log('Error installing service worker: ', err);
+            });
       }
-    });
-    System.import('app.js').then(null, console.error.bind(console));
-  </script>
-</body>
-</html>
+    </script>
+    -->
+  </head>
+  <body>
+    <movie-quotes-app>
+      <div class="valign-wrapper">
+        <div class="valign center-align">
+          <div class="preloader-wrapper big active" style="">
+            <div class="spinner-layer spinner-blue">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </movie-quotes-app>
+
+      <script src="vendor/es6-shim/es6-shim.js"></script>
+      <script src="vendor/systemjs/dist/system-polyfills.js"></script>
+      <script src="vendor/angular2/bundles/angular2-polyfills.js"></script>
+      <script src="vendor/systemjs/dist/system.src.js"></script>
+      <script src="vendor/rxjs/bundles/Rx.js"></script>
+
+      <script src="vendor/angular2/bundles/angular2.dev.js"></script>
+      <script src="vendor/angular2/bundles/http.dev.js"></script>
+      <script src="vendor/angular2/bundles/router.dev.js"></script>
+
+      <script>
+        System.config({
+          map: {
+            firebase: 'vendor/firebase/lib/firebase-web.js',
+            angularfire2: 'vendor/angularfire2'
+          },
+          packages: {
+            app: {
+              format: 'register',
+              defaultExtension: 'js'
+            },
+            angularfire2: {
+              defaultExtension: 'js',
+              main: 'angularfire2.js'
+            }
+          }
+        });
+        System.import('app.js').then(null, console.error.bind(console));
+      </script>
+    </body>
+  </html>
