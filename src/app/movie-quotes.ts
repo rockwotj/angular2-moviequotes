@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 import {CliRouteConfig} from './route-config';
-import {AngularFire} from 'angularfire2';
+import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
@@ -17,13 +17,26 @@ import {Observable} from 'rxjs/Observable';
 
 export class MovieQuotesApp {
   defaultMeaning: number = 42;
-  moviequotes: Observable<any[]>;
+  moviequote: Moviequote = new Moviequote();
+  moviequotes: FirebaseListObservable<any[]>;
 
   constructor(af: AngularFire) {
     this.moviequotes = af.list('/quotes');
   }
 
+  addQuote() {
+    this.moviequotes.add(this.moviequote);
+    this.moviequote = new Moviequote();
+  }
+
   meaningOfLife(meaning?: number) {
     return `The meaning of life is ${meaning || this.defaultMeaning}`;
   }
+}
+
+class Moviequote {
+
+  public movie: String;
+  public quote: String;
+
 }

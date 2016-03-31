@@ -2,6 +2,15 @@
   movie-quotes Works!
 </p>
 
+<div>
+Quote: <input type="text" [(ngModel)]="moviequote.quote">
+</div>
+<div>
+Movie: <input type="text" [(ngModel)]="moviequote.movie">
+</div>
+<div>
+  <button (click)="addQuote()">Add</button>
+</div>
 <ul *ngFor="#mq of moviequotes | async">
   <li class="text">
     {{mq.quote}} - {{mq.movie}}
