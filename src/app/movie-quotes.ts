@@ -22,12 +22,13 @@ export class MovieQuotesApp {
   moviequote: Moviequote = new Moviequote();
   moviequotes: FirebaseListObservable<any[]>;
   editable: boolean = false;
+  showJson: boolean = false;
 
-  constructor(af: AngularFire) { this.moviequotes = af.list('/quotes'); }
+  constructor(af: AngularFire) { this.moviequotes = af.database.list('/quotes'); }
 
   addQuote(mq: Moviequote) {
     console.log(mq);
-    this.moviequotes.add(mq);
+    this.moviequotes.push(mq);
     this.moviequote = new Moviequote();
   }
 
@@ -37,9 +38,7 @@ export class MovieQuotesApp {
   }
 
   editQuote(dialog: EditDialog, mq: Moviequote) {
-    // I want the following
-    // this.moviequotes.save(key);
-    dialog.open(mq); 
+    dialog.open(mq.$key); 
     this.editable = false;
   }
 

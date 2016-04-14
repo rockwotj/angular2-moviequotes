@@ -6,6 +6,7 @@
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a (click)="show(addDialog)">Add Quote</a></li>
       <li><a (click)="editable = !editable">Edit Quotes</a></li>
+      <li><a (click)="showJson = !showJson">Show JSON</a></li>
     </ul>
   </div>
 </nav>
@@ -33,4 +34,7 @@
       </tr>
     </tbody>
   </table>
+  <pre [class.hide]="!showJson">
+    {{ moviequotes | async | json }}
+  </pre>
 </div>
